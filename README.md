@@ -13,7 +13,7 @@ json body request
 {
   username: string,
   password: string,
-  birthdate: staring
+  birthdate: string
 }
 
 json body response (201 CREATED)
