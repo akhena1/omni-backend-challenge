@@ -6,10 +6,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'person' })
-export class PersonEntity {
-  @PrimaryGeneratedColumn('increment')
-  public personId: number;
+@Entity({ name: 'user' })
+export class UserEntity {
+  @PrimaryGeneratedColumn('uuid')
+  public userId: string;
 
   @Column({ type: 'varchar' })
   public username: string;
@@ -20,11 +20,11 @@ export class PersonEntity {
   @Column({ type: 'date' })
   public birthDate: Date;
 
-  @Column({ type: 'float' })
-  public balance: number;
+  @Column({ type: 'decimal', default: 0 })
+  public balance?: number;
 
-  @Column({ type: 'boolean' })
-  public availableToTransfer: boolean;
+  @Column({ type: 'boolean', default: true })
+  public availableToTransfer?: boolean;
 
   @CreateDateColumn({ type: 'timestamp' })
   public createdAt: Date;

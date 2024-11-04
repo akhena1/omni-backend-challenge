@@ -7,8 +7,8 @@ import {
 
 @Entity({ name: 'loginTracker' })
 export class LoginTrackerEntity {
-  @PrimaryGeneratedColumn('increment')
-  public trackId: number;
+  @PrimaryGeneratedColumn('uuid')
+  public trackId: string;
 
   @Column({ type: 'varchar' })
   public userId: string;
