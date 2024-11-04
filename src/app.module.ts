@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PersonEntity } from './adapters/database/entities/Person';
+import { UserEntity } from './adapters/database/entities/User';
 import { LoginTrackerEntity } from './adapters/database/entities/LoginTracker';
 import { TransferHistoryEntity } from './adapters/database/entities/TransferHistory';
+import { ControllersModule } from './adapters/api/controllers/controllers.module';
 
 @Module({
   imports: [
@@ -13,9 +14,10 @@ import { TransferHistoryEntity } from './adapters/database/entities/TransferHist
       database: 'omni',
       username: 'postgres',
       password: 'postgres',
-      entities: [PersonEntity, LoginTrackerEntity, TransferHistoryEntity],
+      entities: [UserEntity, LoginTrackerEntity, TransferHistoryEntity],
       synchronize: true,
     }),
+    ControllersModule,
   ],
 })
 export class AppModule {}

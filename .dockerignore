@@ -1,0 +1,33 @@
+# Ignorar arquivos e diretórios do sistema
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignorar diretórios e arquivos de build
+dist
+build
+
+# Ignorar arquivos de configuração
+.env
+.env.local
+*.env.*
+
+# Ignorar arquivos de controle de versão
+.git
+.gitignore
+.gitattributes
+
+# Ignorar logs
+*.log
+logs
+
+# Ignorar IDEs e editores
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Ignorar outras pastas temporárias
+.tmp
+.cache
+coverage
