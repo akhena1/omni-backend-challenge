@@ -24,7 +24,7 @@ export default class CreateUserService {
 
       if (user) {
         this.logger.log(`user: ${payload.username} already exists`);
-        return new HttpException(
+        throw new HttpException(
           ErrorMessages.USER_ALREADY_EXISTS,
           HttpStatus.CONFLICT,
         );
@@ -34,7 +34,7 @@ export default class CreateUserService {
 
       if (userAge < 18) {
         this.logger.log(`user: ${payload.username} doesn't have legal age`);
-        return new HttpException(
+        throw new HttpException(
           ErrorMessages.USER_MUST_BE_LEGAL_AGE,
           HttpStatus.BAD_REQUEST,
         );
@@ -57,10 +57,7 @@ export default class CreateUserService {
       };
     } catch (error) {
       this.logger.error(`Internal error: ${error}`);
-      throw new HttpException(
-        ErrorMessages.INTERNAL_SERVER_ERROR,
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw error;
     }
   }
 }
