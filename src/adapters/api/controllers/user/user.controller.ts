@@ -7,9 +7,9 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { CreateUserBodyParamsDto } from './dto/createUserBodyParams.dto';
+import { CreateUserBodyParamsDto } from '../../../../domain/dto/createUserBodyParams.dto';
 import CreateUserService from 'src/application/user/createUser.service';
-import { CreateUserResponseDto } from './dto/createUserResponseParams.dto';
+import { CreateUserResponseDto } from '../../../../domain/dto/createUserResponseParams.dto';
 import { ErrorMessages } from 'src/domain/constant/errorMessages';
 
 @ApiTags('User')
@@ -41,14 +41,6 @@ export class UserController {
     @Body() bodyParams: CreateUserBodyParamsDto,
   ): Promise<unknown> {
     return await this.createUserService.execute(bodyParams);
-  }
-
-  @Post('/signin')
-  @ApiOperation({
-    summary: 'Login de usuário',
-  })
-  async login(): Promise<unknown> {
-    return 'ok';
   }
 
   @Get()

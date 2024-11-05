@@ -6,6 +6,8 @@ import { UserEntity } from './entities/User';
 import { LoginTrackerEntity } from './entities/LoginTracker';
 import { TransferHistoryEntity } from './entities/TransferHistory';
 import { IUserRepository } from 'src/domain/interfaces/repository/IUserRepository';
+import { ILoginTrackerRepository } from 'src/domain/interfaces/repository/ILoginTrackerRepository';
+import LoginTrackerRepository from './repository/loginTrackerRepository';
 
 @Global()
 @Module({
@@ -31,7 +33,11 @@ import { IUserRepository } from 'src/domain/interfaces/repository/IUserRepositor
       provide: IUserRepository,
       useClass: UserRepository,
     },
+    {
+      provide: ILoginTrackerRepository,
+      useClass: LoginTrackerRepository,
+    },
   ],
-  exports: [IUserRepository],
+  exports: [IUserRepository, ILoginTrackerRepository],
 })
 export class DatabaseModule {}

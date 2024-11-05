@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateUserBodyParamsDto } from 'src/adapters/api/controllers/user/dto/createUserBodyParams.dto';
+import { CreateUserBodyParamsDto } from 'src/domain/dto/createUserBodyParams.dto';
 import { IUserRepository } from 'src/domain/interfaces/repository/IUserRepository';
-import { getAge } from '../utils/getAge';
+import { getAge } from '../../domain/utils/getAge';
 import { ICustomLogger } from 'src/domain/interfaces/providers/ICustomLogger';
 import { IHashProvider } from 'src/domain/interfaces/providers/IHashProvider';
 import { ErrorMessages } from 'src/domain/constant/errorMessages';
