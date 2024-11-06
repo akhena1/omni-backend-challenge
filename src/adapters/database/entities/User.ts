@@ -20,7 +20,7 @@ export class UserEntity {
   @Column({ type: 'date' })
   public birthDate: Date;
 
-  @Column({ type: 'decimal', default: 0 })
+  @Column({ type: 'decimal', default: 0, precision: 12, scale: 2 })
   public balance?: number;
 
   @Column({ type: 'boolean', default: true })
