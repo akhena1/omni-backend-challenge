@@ -3,6 +3,8 @@ export const ErrorMessages = {
   USER_ALREADY_EXISTS: 'User already exists',
   USER_NOT_FOUND: 'User not found',
   USER_INVALID_PASSWORD: 'Invalid password',
+  USER_INSUFFICIENT_FUNDS: 'Insufficient funds for this transfer',
+  AMOUNT_CANNOT_BE_ZERO: 'Amount must be greater than zero',
   INTERNAL_SERVER_ERROR: 'Internal Server Error',
   ZOD_VALIDATION_ERROR: 'Zod Validation Error',
 };

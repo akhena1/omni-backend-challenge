@@ -10,17 +10,17 @@ export class TransferHistoryEntity {
   @PrimaryGeneratedColumn('uuid')
   public transferId: string;
 
-  @Column({ type: 'int' })
-  public receiverId: number;
+  @Column({ type: 'varchar' })
+  public receiverId: string;
 
-  @Column({ type: 'int' })
-  public senderId: number;
+  @Column({ type: 'varchar' })
+  public senderId: string;
 
   @Column({ type: 'decimal' })
   public amount: number;
 
-  @Column({ type: 'boolean' })
-  public success: boolean;
+  @Column({ type: 'boolean', default: true })
+  public success?: boolean;
 
   @CreateDateColumn({ type: 'timestamp' })
   public transferAt: Date;
