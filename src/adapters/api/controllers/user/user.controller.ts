@@ -7,12 +7,14 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { CreateUserBodyParamsDto } from '../../../../domain/dto/createUserBodyParams.dto';
 import CreateUserService from 'src/application/user/createUser.service';
 import { CreateUserResponseDto } from '../../../../domain/dto/createUserResponseParams.dto';
 import { ErrorMessages } from 'src/domain/constant/errorMessages';
 import ListUserService from 'src/application/user/listUsers.service';
+import { ListUserResponseParamsDto } from 'src/domain/dto/listUsersResponseParams.dto';
 
 @ApiTags('User')
 @Controller('users')
@@ -52,7 +54,12 @@ export class UserController {
   @ApiOperation({
     summary: 'Listagem de usuários',
   })
-  @ApiOkResponse()
+  @ApiOkResponse({
+    type: ListUserResponseParamsDto,
+  })
+  @ApiUnauthorizedResponse({
+    description: ErrorMessages.USER_NOT_AUTHENTICATED,
+  })
   async list(): Promise<unknown> {
     return await this.listUserService.execute();
   }
