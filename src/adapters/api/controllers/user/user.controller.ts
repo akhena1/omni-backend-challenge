@@ -4,6 +4,7 @@ import {
   ApiConflictResponse,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
+  ApiOkResponse,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
@@ -11,11 +12,15 @@ import { CreateUserBodyParamsDto } from '../../../../domain/dto/createUserBodyPa
 import CreateUserService from 'src/application/user/createUser.service';
 import { CreateUserResponseDto } from '../../../../domain/dto/createUserResponseParams.dto';
 import { ErrorMessages } from 'src/domain/constant/errorMessages';
+import ListUserService from 'src/application/user/listUsers.service';
 
 @ApiTags('User')
 @Controller('users')
 export class UserController {
-  constructor(private readonly createUserService: CreateUserService) {}
+  constructor(
+    private readonly createUserService: CreateUserService,
+    private readonly listUserService: ListUserService,
+  ) {}
 
   @Post('/signup')
   @ApiOperation({
@@ -47,7 +52,8 @@ export class UserController {
   @ApiOperation({
     summary: 'Listagem de usuários',
   })
+  @ApiOkResponse()
   async list(): Promise<unknown> {
-    return 'ok';
+    return await this.listUserService.execute();
   }
 }

@@ -6,6 +6,7 @@ import { ErrorMessages } from 'src/domain/constant/errorMessages';
 import { IHashProvider } from 'src/domain/interfaces/providers/IHashProvider';
 import { JwtService } from '@nestjs/jwt';
 import { ILoginTrackerRepository } from 'src/domain/interfaces/repository/ILoginTrackerRepository';
+import { LoginResponseParamsDto } from 'src/domain/dto/loginResponseParams.dto';
 
 @Injectable()
 export default class SigninService {
@@ -17,7 +18,10 @@ export default class SigninService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async execute(payload: LoginBodyParamsDto, ip: string): Promise<any> {
+  async execute(
+    payload: LoginBodyParamsDto,
+    ip: string,
+  ): Promise<LoginResponseParamsDto> {
     try {
       this.logger.log(`Loggin User: ${payload.username} at IP Address: ${ip}`);
 
@@ -62,7 +66,7 @@ export default class SigninService {
 
       return {
         token,
-        expiresIn: '200', // add env vars
+        expiresIn: 200, // add env vars
       };
     } catch (error) {
       this.logger.error(`Internal error: ${error}`);

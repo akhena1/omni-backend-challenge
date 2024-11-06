@@ -15,6 +15,10 @@ export default class UserRepository implements IUserRepository {
     return this.userRepository.save(payload);
   }
 
+  async findAll(): Promise<UserEntity[] | null> {
+    return this.userRepository.find();
+  }
+
   async findOneByUsername(username: string): Promise<UserEntity | null> {
     return this.userRepository.findOne({ where: { username } });
   }

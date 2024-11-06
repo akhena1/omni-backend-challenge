@@ -13,7 +13,7 @@ export default class TransferencyService {
     private readonly logger: ICustomLogger,
   ) {}
 
-  async execute(payload: TransferBodyParamsDto): Promise<any> {
+  async execute(payload: TransferBodyParamsDto): Promise<void> {
     try {
       this.logger.log(
         `Executing transferency from: ${payload.fromId} to: ${payload.toId}`,
@@ -27,6 +27,14 @@ export default class TransferencyService {
         throw new HttpException(
           ErrorMessages.USER_NOT_FOUND,
           HttpStatus.NOT_FOUND,
+        );
+      }
+
+      if (!sender.availableToTransfer) {
+        this.logger.error(`User is not available to transfer`);
+        throw new HttpException(
+          ErrorMessages.USER_NOT_AVAILABLE_TO_TRANSFER,
+          HttpStatus.FORBIDDEN,
         );
       }
 

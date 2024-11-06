@@ -5,6 +5,7 @@ import { getAge } from '../../domain/utils/getAge';
 import { ICustomLogger } from 'src/domain/interfaces/providers/ICustomLogger';
 import { IHashProvider } from 'src/domain/interfaces/providers/IHashProvider';
 import { ErrorMessages } from 'src/domain/constant/errorMessages';
+import { CreateUserResponseDto } from 'src/domain/dto/createUserResponseParams.dto';
 
 @Injectable()
 export default class CreateUserService {
@@ -14,7 +15,9 @@ export default class CreateUserService {
     private readonly hashProvider: IHashProvider,
   ) {}
 
-  async execute(payload: CreateUserBodyParamsDto): Promise<any> {
+  async execute(
+    payload: CreateUserBodyParamsDto,
+  ): Promise<CreateUserResponseDto> {
     try {
       this.logger.log('Executing Create User');
 
