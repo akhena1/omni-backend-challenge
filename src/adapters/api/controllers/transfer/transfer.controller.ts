@@ -1,4 +1,11 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiForbiddenResponse,
@@ -9,6 +16,7 @@ import {
   ApiUnauthorizedResponse,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/adapters/guards/guard/jwt.guard';
 import TransferencyService from 'src/application/transfer/transferency.service';
 import { ErrorMessages } from 'src/domain/constant/errorMessages';
 import { TransferBodyParamsDto } from 'src/domain/dto/transferBodyParams.dto';
@@ -18,6 +26,7 @@ import { TransferBodyParamsDto } from 'src/domain/dto/transferBodyParams.dto';
 export class TransferController {
   constructor(private readonly transferencyService: TransferencyService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post('')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({

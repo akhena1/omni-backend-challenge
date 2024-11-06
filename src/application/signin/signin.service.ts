@@ -66,7 +66,7 @@ export default class SigninService {
 
       return {
         token,
-        expiresIn: 200, // add env vars
+        expiresIn: 2400, // add env vars
       };
     } catch (error) {
       this.logger.error(`Internal error: ${error}`);
