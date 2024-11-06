@@ -16,7 +16,14 @@ export default class UserRepository implements IUserRepository {
   }
 
   async findAll(): Promise<UserEntity[] | null> {
-    return this.userRepository.find();
+    return this.userRepository.find({
+      select: {
+        userId: true,
+        username: true,
+        birthDate: true,
+        balance: true,
+      },
+    });
   }
 
   async findOneByUsername(username: string): Promise<UserEntity | null> {
